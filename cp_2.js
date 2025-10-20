@@ -29,9 +29,22 @@ async function fetchProductsAsync() {
     }
 }
 
-// Function to display products
+// Step 5: Write displayProducts(products)
 function displayProducts(products) {
-    console.log('Displaying products:', products);
+    var container = document.getElementById('product-container');
+    container.innerHTML = ''; // clear previous
+    
+    products.slice(0, 5).forEach(function(p) {
+        var name = p.fields.name;
+        var price = p.fields.price;
+        var imageUrl = getImageUrl(p.fields);
+        
+        var card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = '<img class="product-image" src="' + imageUrl + '" alt="' + name + '">' +
+                        '<div class="product-name">' + name + '</div>' +
+                        '<div class="product-price">$' + (price / 100).toFixed(2) + '</div>';
+        
+        container.appendChild(card);
+    });
 }
-
-fetchProductsAsync();
