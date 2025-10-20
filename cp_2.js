@@ -12,11 +12,14 @@ function fetchProductsThen() {
             });
         })
         .catch(function(error) {
-            console.log('Error fetching products:', error);
+            handleError(error);
         });
 }
 
-fetchProductsThen();
+// Helper function to get image URL: MOVED HERE BEFORE STEP 4
+function getImageUrl(fields) {
+    return fields.image[0].url;
+}
 
 // Step 4: Create a function fetchProductsAsync():
 async function fetchProductsAsync() {
@@ -57,6 +60,8 @@ function handleError(error) {
 // Call the async function
 fetchProductsAsync();
 
-// Step 7: At the bottom of cp_2.js, call both functions:
-fetchProductsThen();
-fetchProductsAsync();
+// Step 7: Call both functions after page loads
+document.addEventListener('DOMContentLoaded', function() {
+    fetchProductsThen();
+    fetchProductsAsync();
+});
