@@ -48,3 +48,15 @@ function displayProducts(products) {
         container.appendChild(card);
     });
 }
+
+// Step 6: Reusable function to handle errors
+function handleError(error) {
+    console.log('An error occurred: ' + error.message);
+}
+
+// Call the async function
+fetchProductsAsync();
+
+// Step 7: At the bottom of cp_2.js, call both functions:
+fetchProductsThen();
+fetchProductsAsync();
